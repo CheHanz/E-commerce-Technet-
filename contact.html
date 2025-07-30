@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TechNest | Powerbanks</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ===== BASE STYLES ===== */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            background: #FFFFFF;
+            color: #1A2E40;
+            line-height: 1.6;
+            padding-top: 0 !important;
+        }
+
+        main {
+            margin-top: 0;
+        }
+
+        /* ===== HEADER & NAVIGATION ===== */
+        .header, header {
+            display: flex;
+            justify-content: flex-start; 
+            align-items: center;
+            padding: 15px 10%; 
+            height: 80px; 
+            background: linear-gradient(135deg, #FFFFFF 0%, #f8fafc 50%, #FFFFFF 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 8s ease-in-out infinite;
+            box-shadow: 0 4px 20px rgba(58, 110, 165, 0.15);
+            position: sticky; 
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            border-bottom: 3px solid transparent;
+            background-clip: padding-box;
+            gap: 100px; 
+        }
+
+        .header::before, header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #3A6EA5, #D40000, #FFC72C, #3A6EA5);
+            background-size: 300% 100%;
+            animation: colorWave 4s linear infinite;
+        }
+
+        .header::after, header::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(58, 110, 165, 0.3), transparent);
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        @keyframes colorWave {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 300% 50%; }
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: 700;
+            color: #3A6EA5;
+            text-decoration: none;
+            background: linear-gradient(45deg, #3A6EA5, #D40000, #FFC72C);
+            background-size: 300% 300%;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: logoGlow 3s ease-in-out infinite;
+            text-shadow: 0 2px 10px rgba(58, 110, 165, 0.3);
+            position: relative;
+            flex-shrink: 0; 
+        }
+
+        .logo::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -10px;
+            right: -10px;
+            bottom: -5px;
+            background: linear-gradient(45deg, rgba(58, 110, 165, 0.1), rgba(212, 0, 0, 0.1), rgba(255, 199, 44, 0.1));
+            border-radius: 8px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .logo:hover::before {
+            opacity: 1;
+        }
+
+        @keyframes logoGlow {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        nav {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 15px 25px;
+            border-radius: 50px;
+            border: 1px solid rgba(58, 110, 165, 0.2);
+            position: relative;
+            overflow: visible;
+            flex-shrink: 0;
+            white-space: nowrap;
+        }
+
+        nav::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            animation: navShimmer 3s infinite;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #1A2E40;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 8px 16px;
+            border-radius: 20px;
+            position: relative;
+            z-index: 1;
+            flex-shrink: 0;
+        }
+
+        nav a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, #3A6EA5, #D40000);
+            border-radius: 20px;
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.3s ease;
+            z-index: -1;
+        }
+
+        nav a:hover::before {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        nav a:hover {
+            color: #FFFFFF;
+            transform: translateY(-2px);
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes navShimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        /* ===== DROPDOWN MENU ===== */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            min-width: 220px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1), 0 5px 15px rgba(0,0,0,0.05);
+            border-radius: 15px;
+            padding: 15px 0;
+            z-index: 1002;
+            top: 100%;
+            left: 0;
+            border: 1px solid rgba(58, 110, 165, 0.2);
+            transform: translateY(-10px);
+            opacity: 0;
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .dropdown-content::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: 20px;
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-bottom: 8px solid rgba(255, 255, 255, 0.95);
+        }
+
+        .dropdown-content a {
+            color: #1A2E40 !important;
+            padding: 12px 25px;
+            display: block;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            margin: 2px 8px;
+            border-radius: 10px;
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dropdown-content a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(58, 110, 165, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .dropdown-content a:hover::before {
+            left: 100%;
+        }
+
+        .dropdown-content a:hover {
+            background: linear-gradient(135deg, #3A6EA5, #4A7BC8);
+            color: #FFFFFF !important;
+            transform: translateX(5px);
+            box-shadow: 0 4px 15px rgba(58, 110, 165, 0.3);
+        }
+
+        /* ===== CONTACT SECTION ===== */
+        .contact-container {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 60px 10%;
+            gap: 40px;
+            background: #f5f5f7;
+            min-height: 70vh;
+        }
+
+        .contact-form, .contact-info {
+            flex: 1;
+            min-width: 300px;
+            background: #FFFFFF;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border: 2px solid #3A6EA5;
+        }
+
+        .contact-form h1, .contact-info h1 {
+            font-size: 32px;
+            margin-bottom: 25px;
+            color: #1A2E40;
+            position: relative;
+        }
+
+        .contact-form h1::after, .contact-info h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: #3A6EA5;
+        }
+
+        label {
+            display: block;
+            margin-top: 20px;
+            font-weight: 500;
+            color: #1A2E40;
+            margin-bottom: 8px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 15px;
+            font-size: 16px;
+            border-radius: 10px;
+            border: 2px solid #e0e0e0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #3A6EA5;
+            box-shadow: 0 0 0 3px rgba(58, 110, 165, 0.1);
+        }
+
+        button {
+            margin-top: 25px;
+            padding: 15px 35px;
+            background: #D40000;
+            color: #FFFFFF;
+            border: none;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 30px;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background: #FFC72C;
+            color: #1A2E40;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .info-box {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 12px;
+            border-left: 4px solid #3A6EA5;
+        }
+
+        .info-box h3 {
+            margin-bottom: 8px;
+            color: #3A6EA5;
+            font-size: 18px;
+        }
+
+        .info-box p {
+            margin: 0;
+            color: #666;
+            font-size: 16px;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer, footer {
+            background: #1A2E40;
+            color: #FFFFFF;
+            text-align: center;
+            padding: 25px 10%;
+            margin-top: 30px;
+        }
+
+        .footer-links, footer a {
+            color: #FFFFFF;
+            text-decoration: none;
+            margin: 0 15px;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover, footer a:hover {
+            color: #FFC72C;
+        }
+
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 1024px) {
+            .header, header {
+                padding: 15px 5%;
+                gap: 50px;
+            }
+            
+            nav {
+                gap: 20px;
+                padding: 12px 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header, header {
+                flex-direction: column;
+                padding: 20px;
+                height: auto;
+                gap: 15px;
+            }
+
+            nav {
+                flex-direction: column;
+                gap: 15px;
+                width: 100%;
+                margin-top: 15px;
+                align-items: flex-start;
+            }
+
+            nav a {
+                padding: 6px 12px;
+                font-size: 14px;
+            }
+
+            .logo {
+                font-size: 22px;
+            }
+
+            .dropdown {
+                width: 100%;
+            }
+
+            .dropdown-content {
+                position: static;
+                box-shadow: none;
+                display: none;
+                width: 100%;
+            }
+
+            .dropdown:hover .dropdown-content {
+                display: block;
+            }
+
+            .contact-container {
+                flex-direction: column;
+                padding: 40px 5%;
+            }
+
+            .contact-form, .contact-info {
+                padding: 30px 20px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .header, header {
+                overflow-x: auto;
+                scrollbar-width: none;
+                -ms-overflow-style: none;
+                gap: 20px;
+            }
+            
+            .header::-webkit-scrollbar, header::-webkit-scrollbar {
+                display: none;
+            }
+            
+            nav {
+                gap: 12px;
+                padding: 8px 12px;
+            }
+            
+            nav a {
+                padding: 5px 10px;
+                font-size: 13px;
+            }
+        }
+        .submit-message {
+            margin-top: 20px;
+            font-size: 16px;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+        }
+
+        .submit-message.success {
+            color: green;
+            background-color: #e6ffed;
+            border-left: 5px solid green;
+        }
+
+        .submit-message.error {
+            color: #d8000c;
+            background-color: #ffe6e6;
+            border-left: 5px solid #d8000c;
+        }
+
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="index.html" class="logo">TechNest</a>
+    <nav>
+        <a href="index.html">Home</a>
+        <div class="dropdown">
+            <a href="products.html">Products</a>
+            <div class="dropdown-content">
+                <a href="product-pb1.html">SpeedCharge 10000mAh</a>
+                <a href="product-pb2.html">UltraBoost 20000mAh</a>
+                <a href="product-pb3.html">MaxLite 15000mAh</a>
+            </div>
+        </div>
+        <a href="contact.html">Contact</a>
+        <a href>Login</a>
+        <a href="about.html">About</a>
+    </nav>
+</header>
+
+<div class="contact-container">
+    <div class="contact-form">
+    <h1>Contact Us</h1>
+    <div id="form-message" class="submit-message" aria-live="polite" style="display:none;"></div>
+    <form id="contactForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" placeholder="Your Name">
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" placeholder="Your Email">
+
+        <label for="message">Message:</label>
+        <textarea id="message" rows="5" placeholder="Your Message"></textarea>
+
+        <button type="submit">Send Message</button>
+    </form>
+    </div>
+
+
+    <div class="contact-info">
+        <h1>Our Info</h1>
+        <div class="info-box">
+            <h3>📍 Address</h3>
+            <p>123 Tech Street, Kuala Lumpur, Malaysia</p>
+        </div>
+        <div class="info-box">
+            <h3>📞 Phone</h3>
+            <p>+60 123 456 789</p>
+        </div>
+        <div class="info-box">
+            <h3>✉️ Email</h3>
+            <p>support@technest.com</p>
+        </div>
+        <div class="info-box">
+            <h3>🌐 Working Hours</h3>
+            <p>Monday - Friday: 9AM - 6PM</p>
+        </div>
+    </div>
+</div>
+
+<footer>&copy; 2025 TechNest. All Rights Reserved.</footer>
+
+<script>
+    document.getElementById('contactForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const message = document.getElementById('message').value.trim();
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (!name || !email || !message) {
+            showMessage(' Please fill in all fields.', 'error');
+        } else if (!emailRegex.test(email)) {
+            showMessage(' Please enter a valid email address.', 'error');
+        } else {
+            showMessage('Thank you for your message! We will get back to you soon.', 'success');
+            document.getElementById('contactForm').reset();
+        }
+    });
+
+    function showMessage(text, type) {
+        const messageDiv = document.getElementById('form-message');
+        messageDiv.textContent = text;
+        messageDiv.className = 'submit-message ' + type;
+        messageDiv.style.display = 'block';
+
+        // Hide after 5 seconds
+        setTimeout(() => {
+            messageDiv.style.display = 'none';
+        }, 5000);
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<head>
+    <meta charset="UTF-8">
+    <title>TechNest | Our Team</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ===== BASE STYLES ===== */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            background: #FFFFFF;
+            color: #1A2E40;
+            line-height: 1.6;
+            padding-top: 0 !important;
+        }
+
+        main {
+            margin-top: 0;
+        }
+
+        /* ===== HEADER & NAVIGATION ===== */
+        .header, header {
+            display: flex;
+            justify-content: flex-start; 
+            align-items: center;
+            padding: 15px 10%; 
+            height: 80px; 
+            background: linear-gradient(135deg, #FFFFFF 0%, #f8fafc 50%, #FFFFFF 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 8s ease-in-out infinite;
+            box-shadow: 0 4px 20px rgba(58, 110, 165, 0.15);
+            position: sticky; 
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            border-bottom: 3px solid transparent;
+            background-clip: padding-box;
+            gap: 100px; 
+        }
+
+        .header::before, header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #3A6EA5, #D40000, #FFC72C, #3A6EA5);
+            background-size: 300% 100%;
+            animation: colorWave 4s linear infinite;
+        }
+
+        .header::after, header::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(58, 110, 165, 0.3), transparent);
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        @keyframes colorWave {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 300% 50%; }
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: 700;
+            color: #3A6EA5;
+            text-decoration: none;
+            background: linear-gradient(45deg, #3A6EA5, #D40000, #FFC72C);
+            background-size: 300% 300%;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: logoGlow 3s ease-in-out infinite;
+            text-shadow: 0 2px 10px rgba(58, 110, 165, 0.3);
+            position: relative;
+            flex-shrink: 0; 
+        }
+
+        .logo::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -10px;
+            right: -10px;
+            bottom: -5px;
+            background: linear-gradient(45deg, rgba(58, 110, 165, 0.1), rgba(212, 0, 0, 0.1), rgba(255, 199, 44, 0.1));
+            border-radius: 8px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .logo:hover::before {
+            opacity: 1;
+        }
+
+        @keyframes logoGlow {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        nav, .navbar {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 15px 25px;
+            border-radius: 50px;
+            border: 1px solid rgba(58, 110, 165, 0.2);
+            position: relative;
+            overflow: visible;
+            flex-shrink: 0;
+            white-space: nowrap;
+        }
+
+        nav::before, .navbar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            animation: navShimmer 3s infinite;
+        }
+
+        nav a, .navbar a {
+            text-decoration: none;
+            color: #1A2E40;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 8px 16px;
+            border-radius: 20px;
+            position: relative;
+            z-index: 1;
+            flex-shrink: 0;
+        }
+
+        nav a::before, .navbar a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, #3A6EA5, #D40000);
+            border-radius: 20px;
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.3s ease;
+            z-index: -1;
+        }
+
+        nav a:hover::before, .navbar a:hover::before {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        nav a:hover, .navbar a:hover {
+            color: #FFFFFF;
+            transform: translateY(-2px);
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes navShimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        /* ===== DROPDOWN MENU ===== */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            min-width: 220px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1), 0 5px 15px rgba(0,0,0,0.05);
+            border-radius: 15px;
+            padding: 15px 0;
+            z-index: 1002;
+            top: 100%;
+            left: 0;
+            border: 1px solid rgba(58, 110, 165, 0.2);
+            transform: translateY(-10px);
+            opacity: 0;
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .dropdown-content::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: 20px;
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-bottom: 8px solid rgba(255, 255, 255, 0.95);
+        }
+
+        .dropdown-content a {
+            color: #1A2E40 !important;
+            padding: 12px 25px;
+            display: block;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            margin: 2px 8px;
+            border-radius: 10px;
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dropdown-content a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(58, 110, 165, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .dropdown-content a:hover::before {
+            left: 100%;
+        }
+
+        .dropdown-content a:hover {
+            background: linear-gradient(135deg, #3A6EA5, #4A7BC8);
+            color: #FFFFFF !important;
+            transform: translateX(5px);
+            box-shadow: 0 4px 15px rgba(58, 110, 165, 0.3);
+        }
+
+        /* ===== ABOUT/TEAM SECTION ===== */
+        .about-section {
+            padding: 60px 10%;
+            text-align: center;
+            background: #FFFFFF;
+        }
+
+        .about-section h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #1A2E40;
+        }
+
+        .about-section p {
+            max-width: 700px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
+            color: #666;
+        }
+
+        .team-grid {
+            display: flex;
+            flex-wrap: nowrap;
+            gap: 30px;
+            overflow-x: auto;
+            padding-bottom: 15px;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .team-member {
+            flex: 0 0 auto;
+            min-width: 260px;
+            background: #FFFFFF;
+            border-radius: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            padding: 20px;
+            transition: transform 0.3s;
+            border: 1px solid #3A6EA5;
+        }
+
+        .team-member:hover {
+            transform: translateY(-5px);
+        }
+
+        .team-member img {
+            width: 80%;          
+            max-width: 200px;      
+            border-radius: 15px;
+            margin-bottom: 15px;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .team-member h3 {
+            margin-bottom: 8px;
+            color: #1A2E40;
+        }
+
+        .team-member p {
+            font-size: 14px;
+            line-height: 1.5;
+            color: #666;
+        }
+
+        .team-member strong {
+            color: #3A6EA5;
+            font-weight: 600;
+        }
+
+        /* Custom scrollbar */
+        .team-grid::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .team-grid::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        .team-grid::-webkit-scrollbar-thumb {
+            background: #3A6EA5;
+            border-radius: 10px;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer, footer {
+            background: #1A2E40;
+            color: #FFFFFF;
+            text-align: center;
+            padding: 25px 10%;
+            margin-top: 30px;
+        }
+
+        .footer-links, footer a {
+            color: #FFFFFF;
+            text-decoration: none;
+            margin: 0 15px;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover, footer a:hover {
+            color: #FFC72C;
+        }
+
+        .team-carousel-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            padding: 0 40px;
+        }
+
+        .team-btn {
+            background-color: #3A6EA5;
+            border: none;
+            color: white;
+            font-size: 24px;
+            padding: 10px 15px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            z-index: 10;
+        }
+
+        .team-btn:hover {
+            background-color: #2e5882;
+        }
+
+        .team-btn.prev {
+            position: absolute;
+            left: 10px;
+        }
+
+       .team-btn.next {
+        position: absolute;
+        right: 10px;
+    }
+
+
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 1024px) {
+            .header, header {
+                padding: 15px 5%;
+                gap: 50px;
+            }
+            
+            nav, .navbar {
+                gap: 20px;
+                padding: 12px 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header, header {
+                flex-direction: column;
+                padding: 20px;
+                height: auto;
+                gap: 15px;
+            }
+
+            nav, .navbar {
+                flex-direction: column;
+                gap: 15px;
+                width: 100%;
+                margin-top: 15px;
+                align-items: flex-start;
+            }
+
+            .dropdown {
+                width: 100%;
+            }
+
+            .dropdown-content {
+                position: static;
+                box-shadow: none;
+                display: none;
+                width: 100%;
+            }
+
+            .dropdown:hover .dropdown-content {
+                display: block;
+            }
+
+            .hero-text h1 {
+                font-size: 36px;
+            }
+
+            .hero-text p {
+                font-size: 18px;
+            }
+
+            .products-section h1 {
+                font-size: 32px;
+            }
+
+            .product-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                padding: 0 20px;
+            }
+
+            .product-card {
+                max-width: 400px;
+                margin: 0 auto;
+            }
+
+            .features-grid {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .feature-item {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .header, header {
+                overflow-x: auto;
+                scrollbar-width: none;
+                -ms-overflow-style: none;
+                gap: 20px;
+            }
+            
+            .header::-webkit-scrollbar, header::-webkit-scrollbar {
+                display: none;
+            }
+            
+            nav, .navbar {
+                gap: 12px;
+                padding: 8px 12px;
+            }
+            
+            nav a, .navbar a {
+                padding: 5px 10px;
+                font-size: 13px;
+            }
+            
+            .logo {
+                font-size: 22px;
+            }
+        }
+    </style>    
+</head>
+<body>
+
+<header>
+    <div class="logo">TechNest</div>
+    <nav class="navbar">
+    <a href="index.html">Home</a>
+    <div class="dropdown">
+        <a href="products.html" class="dropbtn">Products</a>
+        <div class="dropdown-content">
+            <a href="product-pb1.html">SpeedCharge 10000mAh</a>
+            <a href="product-pb2.html">UltraBoost 20000mAh</a>
+            <a href="product-pb3.html">MaxLite 15000mAh</a>
+            <a href="products.html">View All</a>
+        </div>
+    </div>
+    <a href="contact.html">Contact</a>
+    <a href>Login</a>
+    <a href="about.html">About</a>
+</nav>
+</header>
+
+<section class="about-section">
+    <h1>Meet Our Team</h1>
+    <p>We are a passionate team of developers and designers working together to build TechNest — a one-stop online store for high-quality powerbanks with excellent user experience.</p>
+
+<div class="team-carousel-container">
+  <button class="team-btn prev">&#10094;</button>
+
+  <div class="team-grid" id="teamCarousel">
+      <div class="team-member">
+          <img src="images/member1.jpg" alt="Member 1">
+          <h3>Ng Tsu Quan</h3>
+          <strong>Design</strong>
+          <p>Responsible for project management, planning and ensuring team goals are achieved.</p>
+      </div>
+      <div class="team-member">
+          <img src="images/member2.jpg" alt="Member 2">
+          <h3>Che Hanz</h3>
+          <strong>Frontend Developer</strong>
+          <p>Handles the HTML, CSS styling and ensures responsive layouts for all pages.</p>
+      </div>
+      <div class="team-member">
+          <img src="images/member3.jpg" alt="Member 3">
+          <h3>Jay Chew</h3>
+          <strong>JavaScript Developer</strong>
+          <p>Develops interactive components such as forms, buttons and page functionalities.</p>
+      </div>
+      <div class="team-member">
+          <img src="images/member4.jpg" alt="Member 4">
+          <h3>Muhammad</h3>
+          <strong>Content Specialist</strong>
+          <p>Prepares product descriptions, reviews, and contributes to documentation.</p>
+      </div>
+  </div>
+
+  <button class="team-btn next">&#10095;</button>
+</div>
+
+</section>
+
+<footer>&copy; 2025 TechNest. All Rights Reserved.</footer>
+
+<script>
+    const carousel = document.getElementById('teamCarousel');
+    const prevBtn = document.querySelector('.team-btn.prev');
+    const nextBtn = document.querySelector('.team-btn.next');
+
+    prevBtn.addEventListener('click', () => {
+        carousel.scrollBy({ left: -300, behavior: 'smooth' });
+    });
+
+    nextBtn.addEventListener('click', () => {
+        carousel.scrollBy({ left: 300, behavior: 'smooth' });
+    });
+</script>
+
+</body>
+</html>
